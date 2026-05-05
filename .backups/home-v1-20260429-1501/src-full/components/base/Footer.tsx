@@ -1,0 +1,108 @@
+import Link from "next/link";
+import { Logo } from "./Logo";
+
+const COLUMNS = [
+  {
+    title: "Produto",
+    items: [
+      { label: "Como Funciona", href: "/como-funciona" },
+      { label: "Funcionalidades", href: "/funcionalidades" },
+      { label: "Integrações", href: "/integracoes" },
+      { label: "Preços", href: "/precos" }
+    ]
+  },
+  {
+    title: "Para Quem",
+    items: [
+      { label: "Operações", href: "/para-operacoes" },
+      { label: "PMEs", href: "/para-pmes" },
+      { label: "Advogados", href: "/para-advogados" }
+    ]
+  },
+  {
+    title: "Resolução",
+    items: [
+      { label: "Resolução de Disputas", href: "/resolucao-de-disputas" },
+      { label: "Câmara SOMA", href: "/resolucao-de-disputas" },
+      {
+        label: "Conhecer a câmara",
+        href: "https://somalegal.tech",
+        external: true
+      }
+    ]
+  },
+  {
+    title: "Empresa",
+    items: [
+      { label: "Sobre", href: "/sobre" },
+      { label: "Blog", href: "/blog" },
+      { label: "Contato", href: "mailto:contato@maislegal.tech" },
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/company/maislegal",
+        external: true
+      }
+    ]
+  }
+];
+
+export function Footer() {
+  return (
+    <footer className="bg-zinc-900 px-4 py-10 text-sm text-white md:px-16">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-10 grid grid-cols-2 gap-10 md:grid-cols-5">
+          <div className="col-span-2 md:col-span-1">
+            <Logo variant="white" height={28} />
+            <p className="mt-4 max-w-[240px] text-[13px] leading-relaxed text-zinc-400">
+              Fechar um bom contrato é legal. Ver o combinado funcionar é
+              +legal_.
+            </p>
+          </div>
+
+          {COLUMNS.map(col => (
+            <div key={col.title}>
+              <h4 className="mb-4 font-mono text-[11px] uppercase tracking-widest text-zinc-500">
+                {col.title}
+              </h4>
+              <ul className="flex flex-col gap-2.5">
+                {col.items.map(item => (
+                  <li key={item.label}>
+                    <Link
+                      href={item.href}
+                      target={
+                        "external" in item && item.external ? "_blank" : undefined
+                      }
+                      rel={
+                        "external" in item && item.external
+                          ? "noopener noreferrer"
+                          : undefined
+                      }
+                      className="text-zinc-300 transition-colors hover:text-white"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="flex flex-col items-start justify-between gap-3 border-t border-zinc-700 pt-6 md:flex-row md:items-center">
+          <p className="text-[12px] text-zinc-500">
+            +legal_ © {new Date().getFullYear()} · Plataforma de gestão de
+            contratos
+          </p>
+          <div className="flex gap-5 text-[12px] text-zinc-500">
+            <Link href="/privacidade" className="hover:text-white">
+              Política de Privacidade
+            </Link>
+            <Link href="/termos" className="hover:text-white">
+              Termos de Uso
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}

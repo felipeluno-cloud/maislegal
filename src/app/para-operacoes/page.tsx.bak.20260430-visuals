@@ -1,0 +1,216 @@
+import {
+  ArrowRight,
+  Briefcase,
+  Bell,
+  History,
+  Layers,
+  Calendar,
+  ShieldCheck,
+  MessageSquare
+} from "lucide-react";
+import { Button } from "@/components/base/Button";
+import { CtaDark } from "@/components/base/CtaDark";
+
+// 3 mudanças concretas no dia da Diretora de Operações
+const MUDANCAS = [
+  {
+    icon: Layers,
+    title: "O portfólio inteiro em uma tela só",
+    body: "Você abre a +legal_ pela manhã e vê os 80 contratos ativos com status visual, vencimentos próximos, obrigações pendentes e SLAs comprometidos. Sem precisar puxar três planilhas e cruzar com o e-mail.",
+    visual: "portfolio"
+  },
+  {
+    icon: Bell,
+    title: "Alertas que chegam antes do problema",
+    body: "Cada cláusula vira obrigação rastreável, e os avisos chegam 90, 60 e 30 dias antes do prazo. Quando o time olha para a renovação, ainda há tempo para negociar, e não para correr atrás.",
+    visual: "alertas"
+  },
+  {
+    icon: History,
+    title: "Contexto que sobrevive a quem sai do time",
+    body: "Quando a pessoa que cuidava daquele fornecedor pede demissão, o histórico não vai com ela. Cada versão, comentário e aditivo fica registrado no ambiente, e quem assume a vaga começa com o caso entendido.",
+    visual: "historico"
+  }
+];
+
+// Day 0 → 30 → 90 do onboarding
+const RAMP = [
+  {
+    when: "Day 0",
+    title: "Importação acompanhada",
+    body: "A equipe da +legal_ acompanha você pessoalmente na importação dos primeiros contratos críticos, configura o painel com seus campos, e treina o time em uma sessão de 1 hora."
+  },
+  {
+    when: "Day 30",
+    title: "Operação rodando",
+    body: "Os primeiros alertas começam a chegar para o time, os aditivos viram fluxo formal dentro do ambiente, e o histórico de versões já cobre as movimentações do mês inteiro."
+  },
+  {
+    when: "Day 90",
+    title: "Confiança no painel",
+    body: "Você abre o painel todo dia e confia no que vê. As planilhas paralelas vão saindo de cena, o jurídico externo passa a usar o ambiente como fonte única, e o portfólio inteiro está sob monitoramento."
+  }
+];
+
+// 3 motivos específicos de Early Access para Operações
+const PORQUE_AGORA = [
+  {
+    icon: ShieldCheck,
+    title: "Importação personalizada dos seus contratos",
+    body: "A equipe carrega os primeiros 10 a 20 contratos críticos com você, configura os campos do seu portfólio, e ajusta os alertas para os SLAs que importam mais."
+  },
+  {
+    icon: Calendar,
+    title: "Operador gratuito permanente",
+    body: "O preço de lançamento fica garantido para os primeiros workspaces, mesmo depois do produto entrar em fase comercial. O primeiro operador continua gratuito de forma permanente."
+  },
+  {
+    icon: MessageSquare,
+    title: "Voz direta nos fundadores",
+    body: "Os primeiros workspaces moldam a +legal_. Seu feedback vai direto para os fundadores e orienta o que entra em produção nos próximos meses."
+  }
+];
+
+export default function ParaOperacoesPage() {
+  return (
+    <>
+      {/* HERO · fala diretamente com a Diretora */}
+      <section className="relative overflow-hidden border-b border-stone-200 bg-white">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div
+            className="absolute h-[600px] w-[600px] rounded-full opacity-[0.05]"
+            style={{ background: "var(--brand)", top: "-150px", right: "-150px" }}
+          />
+        </div>
+
+        <div className="container-soma relative py-16 md:py-24">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.1fr_1fr]">
+            <div>
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand-tint px-3 py-1.5">
+                <Briefcase className="size-4 text-brand" strokeWidth={2} />
+                <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-brand">
+                  Para Operações
+                </span>
+              </div>
+
+              <h1 className="mb-6 font-title text-4xl font-bold tracking-tighter text-gray-900 md:text-5xl lg:text-[56px] leading-[1.05]">
+                Você já gerencia 80 contratos.
+                <br />
+                <span className="text-brand">
+                  E sabe exatamente o que vence amanhã?
+                </span>
+              </h1>
+
+              <p className="mb-8 text-lg leading-relaxed text-gray-700 md:text-xl">
+                A +legal_ é o ambiente onde o portfólio inteiro vive numa tela
+                só, com alertas chegando antes de cada prazo e o histórico de
+                cada contrato preservado mesmo quando o time muda. Em
+                operações com 50 a 300 contratos B2B, isso é a diferença entre
+                reagir e antecipar.
+              </p>
+
+              <div className="flex flex-wrap gap-3">
+                <Button href="/early-access" variant="primary" size="lg">
+                  Entrar para o Early Access <ArrowRight className="size-4" />
+                </Button>
+                <Button
+                  href="mailto:contato@maislegal.tech?subject=Conversa%20sobre%20Operações"
+                  variant="secondary"
+                  size="lg"
+                >
+                  Conversar com a equipe
+                </Button>
+              </div>
+
+              <p className="mt-5 font-mono text-[11px] uppercase tracking-widest text-stone-500">
+                Operador grátis · Sem cartão · Importação acompanhada
+              </p>
+            </div>
+
+            {/* Visual · mockup do painel pelos olhos da Diretora */}
+            <div className="hidden lg:block">
+              <MockupPainelOperacoes />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* O QUE MUDA NO SEU DIA · 3 mudanças concretas com mini-visuais */}
+      <section className="bg-stone-50">
+        <div className="container-soma section-soma">
+          <div className="mb-12 max-w-[860px]">
+            <p className="eyebrow mb-4">O que muda no seu dia</p>
+            <h2 className="h-soma mb-4">
+              Três coisas que você passa a ter, na hora que entra.
+            </h2>
+            <p className="text-lg leading-relaxed text-gray-600">
+              Não é uma promessa de transformação genérica. É o que aparece no
+              seu navegador na primeira semana e segue aparecendo todos os
+              dias depois disso.
+            </p>
+          </div>
+
+          <div className="space-y-12">
+            {MUDANCAS.map((m, i) => {
+              const reverse = i % 2 === 1;
+              const Icon = m.icon;
+              const Visual =
+                m.visual === "portfolio"
+                  ? VisualPortfolio
+                  : m.visual === "alertas"
+                    ? VisualAlertas
+                    : VisualHistorico;
+              return (
+                <div
+                  key={m.title}
+                  className={`grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-14 ${
+                    reverse ? "lg:grid-flow-col-dense" : ""
+                  }`}
+                >
+                  <div className={reverse ? "lg:col-start-2" : ""}>
+                    <div className="mb-5 flex size-12 items-center justify-center rounded-xl bg-brand-tint">
+                      <Icon className="size-6 text-brand" strokeWidth={1.6} />
+                    </div>
+                    <h3 className="mb-4 font-title text-2xl font-bold tracking-tight text-gray-900 md:text-3xl">
+                      {m.title}
+                    </h3>
+                    <p className="text-base leading-relaxed text-gray-700 md:text-lg">
+                      {m.body}
+                    </p>
+                  </div>
+                  <div
+                    className={`overflow-hidden rounded-2xl border-2 border-brand bg-brand-tint p-6 md:p-8 ${
+                      reverse ? "lg:col-start-1" : ""
+                    }`}
+                  >
+                    <Visual />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* RAMP · Day 0, 30, 90 */}
+      <section className="bg-white">
+        <div className="container-soma section-soma">
+          <div className="mb-12 max-w-[820px]">
+            <p className="eyebrow mb-4">Como começa</p>
+            <h2 className="h-soma mb-4">
+              Do primeiro contrato importado até o painel rodando sozinho.
+            </h2>
+            <p className="text-lg leading-relaxed text-gray-600">
+              Você não precisa virar especialista em mais uma ferramenta. A
+              equipe da +legal_ acompanha os primeiros passos, e em 90 dias o
+              ambiente já carrega o seu portfólio inteiro.
+            </p>
+          </div>
+
+          <div className="relative grid grid-cols-1 gap-5 md:grid-cols-3">
+            {/* Linha conectando os 3 marcos */}
+            <div className="absolute left-0 right-0 top-12 hidden h-px bg-brand/25 md:block" />
+
+            {RAMP.map((r, i) => (
+              <div
+                key=

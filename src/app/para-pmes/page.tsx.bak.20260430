@@ -1,0 +1,200 @@
+import {
+  ArrowRight,
+  Building2,
+  Lock,
+  Sparkles,
+  Gift,
+  AlertTriangle,
+  FileWarning,
+  HandshakeIcon
+} from "lucide-react";
+import { Button } from "@/components/base/Button";
+import { CtaDark } from "@/components/base/CtaDark";
+
+const DORES = [
+  "Disputas de escopo com clientes que têm muito mais recursos jurídicos",
+  "Sem registro claro do que foi combinado e do que mudou",
+  "Custo e desgaste do contencioso judicial para uma PME",
+  "Medo de litigar e perder o cliente, mesmo tendo razão",
+  "Contrato assinado, salvo no Drive, e nunca mais aberto"
+];
+
+const GATILHOS = [
+  { icon: AlertTriangle, text: "Perde prazo e recebe notificação extrajudicial de multa" },
+  { icon: Building2, text: "Cliente corporativo exige um contrato mais estruturado" },
+  { icon: FileWarning, text: "Disputa de escopo sem registro do que foi acordado" },
+  { icon: HandshakeIcon, text: "Renova automaticamente uma ferramenta que queria cancelar" }
+];
+
+const OBJECOES = [
+  {
+    q: "Meu cliente não vai usar.",
+    a: "A parte convidada acessa como visitante, sem criar conta, sem custo. O onboarding da outra parte leva minutos."
+  },
+  {
+    q: "É caro para o meu tamanho.",
+    a: "O primeiro operador é gratuito permanente. A partir do segundo, R$500 por mês. Quanto custou a última disputa?"
+  },
+  {
+    q: "Tenho Drive com tudo.",
+    a: "Drive guarda arquivo. A +legal_ guarda contexto, histórico e obrigações. E quem participa do contrato vê a mesma coisa."
+  }
+];
+
+const MUDANCAS = [
+  {
+    icon: Sparkles,
+    title: "Histórico único, pros dois lados",
+    body: "PME e cliente corporativo veem o mesmo histórico do contrato no mesmo ambiente, então deixa de existir versão A contra versão B quando algo precisa ser revisitado."
+  },
+  {
+    icon: Lock,
+    title: "Mediação SOMA confidencial",
+    body: "Resolução privada e confidencial via SOMA, que preserva o relacionamento comercial sem precisar passar pelo judiciário e sem expor a disputa publicamente."
+  },
+  {
+    icon: Building2,
+    title: "Mesmo acesso que o cliente grande",
+    body: "O ambiente trata todos os envolvidos em condições iguais."
+  }
+];
+
+export default function ParaPmesPage() {
+  return (
+    <>
+      <section className="relative overflow-hidden border-b border-stone-200 bg-white">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div
+            className="absolute h-[600px] w-[600px] rounded-full opacity-[0.07]"
+            style={{ background: "var(--peach-dark)", top: "-150px", right: "-150px" }}
+          />
+        </div>
+
+        <div className="container-soma relative py-16 md:py-24">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.3fr_1fr]">
+            <div>
+              <div
+                className="mb-6 inline-flex items-center gap-2 rounded-full border px-3 py-1.5"
+                style={{ background: "var(--peach-bg)", borderColor: "rgba(212,148,90,0.4)" }}
+              >
+                <Building2 className="size-4 text-peach-dark" strokeWidth={2} />
+                <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-peach-dark">
+                  Para PMEs
+                </span>
+              </div>
+
+              <h1 className="mb-6 font-title text-4xl font-bold tracking-tighter text-gray-900 md:text-5xl lg:text-[56px] leading-[1.05]">
+                Cláusula esquecida.<br />
+                Prazo vencido.<br />
+                <span className="text-peach-dark">Multa de R$ 4.000.</span>
+              </h1>
+
+              <p className="mb-8 text-lg leading-relaxed text-gray-600 md:text-xl">
+                Sócia-fundadora de uma PME de serviços que contrata com
+                clientes corporativos com o departamento jurídico inteiro do
+                lado deles. Você não tem time jurídico interno, mas carrega
+                os mesmos riscos contratuais que eles, com muito menos
+                recurso para administrar quando algo dá errado.
+              </p>
+
+              <div className="flex flex-wrap gap-3">
+                <Button
+                  href="/early-access"
+                  variant="primary"
+                  size="lg"
+                  className="!bg-peach-dark !border-peach-dark hover:!bg-peach-dark/90"
+                >
+                  Comece agora, sem cartão <ArrowRight className="size-4" />
+                </Button>
+              </div>
+            </div>
+
+            <div className="hidden lg:block">
+              <div
+                className="rounded-2xl border-2 p-7 shadow-lg"
+                style={{ background: "white", borderColor: "var(--peach-dark)" }}
+              >
+                <div className="mb-6 flex items-center gap-4">
+                  <div
+                    className="flex size-16 items-center justify-center rounded-2xl text-3xl font-extrabold text-white"
+                    style={{ background: "var(--peach-dark)" }}
+                  >
+                    S
+                  </div>
+                  <div>
+                    <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-peach-dark">
+                      Persona
+                    </p>
+                    <p className="mt-0.5 font-title text-lg font-bold text-gray-900">
+                      Sócia-fundadora de PME
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className="mb-5 inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-widest text-peach-dark"
+                  style={{ background: "var(--peach-bg)" }}
+                >
+                  Serviços especializados
+                </div>
+                <div className="space-y-3 border-t border-stone-200 pt-5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-600">Equipe</span>
+                    <span className="font-title text-base font-bold text-peach-dark">8-12 pessoas</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-600">Jurídico interno</span>
+                    <span className="font-title text-base font-bold text-peach-dark">Não tem</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-600">Decisora?</span>
+                    <span className="font-title text-base font-bold text-peach-dark">Sim</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CENÁRIO ANTES/DEPOIS */}
+      <section className="bg-stone-50">
+        <div className="container-soma section-soma">
+          <div className="mb-10 max-w-[820px]">
+            <p className="eyebrow mb-4 text-peach-dark">O cenário</p>
+            <h2 className="h-soma mb-4">
+              Multa de R$ 4 mil evitada por um alerta automático.
+            </h2>
+            <p className="text-lg leading-relaxed text-gray-600">
+              O contrato previa entrega parcial em 45 dias, mas essa cláusula
+              nunca entrou em nenhum calendário do time, e ninguém percebeu o
+              prazo passar até a notificação de multa chegar.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="rounded-2xl border border-l-4 bg-white p-7" style={{ borderLeftColor: "#dc2626" }}>
+              <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-rose-50 px-3 py-1 font-mono text-xs uppercase tracking-widest text-red-700">
+                <span className="size-1.5 rounded-full bg-red-600" />
+                Sem +legal_
+              </p>
+              <h3 className="mb-4 font-title text-xl font-bold text-gray-900">
+                Contrato salvo no Drive, nunca mais aberto.
+              </h3>
+              <ul className="mb-5 space-y-2 text-[15px] leading-relaxed text-gray-700">
+                <li className="flex gap-2"><span className="text-red-600">•</span> Cláusula de entrega parcial em 45 dias não estava no calendário</li>
+                <li className="flex gap-2"><span className="text-red-600">•</span> No dia 50, cliente envia notificação formal de multa</li>
+                <li className="flex gap-2"><span className="text-red-600">•</span> 5% do valor do contrato (R$ 4.000)</li>
+                <li className="flex gap-2"><span className="text-red-600">•</span> Relacionamento afetado por percepção de desorganização</li>
+              </ul>
+              <p className="rounded-lg bg-rose-50 px-4 py-3 font-bold text-red-700">
+                Custo: multa, tempo e relacionamento.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-l-4 bg-white p-7" style={{ borderLeftColor: "var(--after, #2E8B57)" }}>
+              <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 font-mono text-xs uppercase tracking-widest text-emerald-700">
+                <span className="size-1.5 rounded-full bg-emerald-600" />
+                Com +legal_
+              </p>
+              <h3 className="mb-4 font-title text-xl font-bold text-gray-900">
+                Tecnologia extrai a ob

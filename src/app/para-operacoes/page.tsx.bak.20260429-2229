@@ -1,0 +1,182 @@
+import {
+  ArrowRight,
+  Briefcase,
+  TrendingUp,
+  FileSearch,
+  Bell,
+  AlertCircle,
+  Calendar,
+  RefreshCw,
+  UserMinus
+} from "lucide-react";
+import { Button } from "@/components/base/Button";
+import { CtaDark } from "@/components/base/CtaDark";
+
+const DORES = [
+  "SLAs perdidos em planilhas desatualizadas",
+  "Renovações que passam da data sem aviso",
+  "Fornecedores mudam prazos e você só descobre depois",
+  "Multas e penalidades que poderiam ter sido evitadas",
+  "Histórico que some quando o gestor responsável sai"
+];
+
+const GATILHOS = [
+  { icon: RefreshCw, text: "Renovação automática indesejada que gera custo ou conflito" },
+  { icon: UserMinus, text: "Colaborador responsável pelos contratos sai da empresa" },
+  { icon: AlertCircle, text: "Disputa com fornecedor exige reconstrução de histórico inexistente" },
+  { icon: FileSearch, text: "Auditoria interna ou externa questiona o estado dos contratos" }
+];
+
+const OBJECOES = [
+  {
+    q: "Já temos um processo.",
+    a: "Qual é o processo para saber o que vence nos próximos 60 dias? Na maior parte dos casos, não há resposta clara."
+  },
+  {
+    q: "Mais uma ferramenta na stack.",
+    a: "O primeiro operador é gratuito. Comece com um contrato e avalie o valor antes de migrar tudo."
+  },
+  {
+    q: "Jurídico precisa aprovar.",
+    a: "A gente oferece acesso gratuito para o jurídico como visitante, então o time vê o produto antes de qualquer decisão de compra."
+  }
+];
+
+const MUDANCAS = [
+  { icon: Briefcase, title: "Painel centralizado", body: "Todos os contratos ativos em um só lugar, com status visual e indicação clara do que precisa de atenção primeiro." },
+  { icon: TrendingUp, title: "Alertas automáticos", body: "Avisos chegam 30, 60 e 90 dias antes do vencimento, então nenhuma renovação aparece como surpresa no meio do mês." },
+  { icon: FileSearch, title: "Histórico que não some", body: "O contexto do contrato fica no ambiente, não na cabeça de quem está cuidando dele, e segue disponível mesmo se o colaborador sair." }
+];
+
+export default function ParaOperacoesPage() {
+  return (
+    <>
+      <section className="relative overflow-hidden border-b border-stone-200 bg-white">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div
+            className="absolute h-[600px] w-[600px] rounded-full opacity-[0.05]"
+            style={{ background: "var(--brand)", top: "-150px", right: "-150px" }}
+          />
+        </div>
+
+        <div className="container-soma relative py-16 md:py-24">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.3fr_1fr]">
+            <div>
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand-tint px-3 py-1.5">
+                <Briefcase className="size-4 text-brand" strokeWidth={2} />
+                <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-brand">
+                  Para Operações
+                </span>
+              </div>
+
+              <h1 className="mb-6 font-title text-4xl font-bold tracking-tighter text-gray-900 md:text-5xl lg:text-[56px] leading-[1.05]">
+                Três contratos renovaram <span className="text-brand">sem você saber</span>.
+              </h1>
+
+              <p className="mb-8 text-lg leading-relaxed text-gray-600 md:text-xl">
+                Diretora de Operações em outsourcing B2B, com 50 a 300
+                contratos ativos sob sua responsabilidade. Cada um deles tem
+                seus SLAs, suas obrigações, suas datas de renovação, e quando
+                algo falha, o cliente costuma reclamar antes de você
+                conseguir saber o que aconteceu.
+              </p>
+
+              <div className="flex flex-wrap gap-3">
+                <Button href="/early-access" variant="primary" size="lg">
+                  Ver o portfólio pelos seus olhos <ArrowRight className="size-4" />
+                </Button>
+              </div>
+            </div>
+
+            <div className="hidden lg:block">
+              <PersonaCard
+                initial="D"
+                role="Diretora de Operações"
+                industry="Outsourcing B2B"
+                stats={[
+                  { label: "Contratos ativos", val: "50-300" },
+                  { label: "Faturamento", val: "R$15-40M" },
+                  { label: "Decisora?", val: "Sim" }
+                ]}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CENÁRIO ANTES/DEPOIS */}
+      <section className="bg-stone-50">
+        <div className="container-soma section-soma">
+          <div className="mb-10 max-w-[820px]">
+            <p className="eyebrow mb-4">O cenário</p>
+            <h2 className="h-soma mb-4">
+              R$ 102 mil comprometidos sem ninguém perceber.
+            </h2>
+            <p className="text-lg leading-relaxed text-gray-600">
+              A cláusula de cancelamento exigia aviso com 90 dias de
+              antecedência, mas ninguém lembrou de olhar a tempo, e o
+              contrato renovou automaticamente para mais um ciclo.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="rounded-2xl border border-l-4 bg-white p-7" style={{ borderLeftColor: "#dc2626" }}>
+              <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-rose-50 px-3 py-1 font-mono text-xs uppercase tracking-widest text-red-700">
+                <span className="size-1.5 rounded-full bg-red-600" />
+                Sem +legal_
+              </p>
+              <h3 className="mb-4 font-title text-xl font-bold text-gray-900">
+                Cláusula enterrada na cláusula 12.
+              </h3>
+              <ul className="mb-5 space-y-2 text-[15px] leading-relaxed text-gray-700">
+                <li className="flex gap-2"><span className="text-red-600">•</span> Prazo de 90 dias para cancelamento que ninguém leu</li>
+                <li className="flex gap-2"><span className="text-red-600">•</span> Único aviso era e-mail antigo do fornecedor</li>
+                <li className="flex gap-2"><span className="text-red-600">•</span> Renovou automaticamente por mais 12 meses</li>
+                <li className="flex gap-2"><span className="text-red-600">•</span> Empresa continuou pagando serviço que não queria</li>
+              </ul>
+              <p className="rounded-lg bg-rose-50 px-4 py-3 font-bold text-red-700">
+                Custo: R$ 102.000 comprometidos involuntariamente.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-l-4 bg-white p-7" style={{ borderLeftColor: "var(--after, #2E8B57)" }}>
+              <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 font-mono text-xs uppercase tracking-widest text-emerald-700">
+                <span className="size-1.5 rounded-full bg-emerald-600" />
+                Com +legal_
+              </p>
+              <h3 className="mb-4 font-title text-xl font-bold text-gray-900">
+                Sistema lê o contrato e agenda alertas.
+              </h3>
+              <ul className="mb-5 space-y-2 text-[15px] leading-relaxed text-gray-700">
+                <li className="flex gap-2"><span className="text-emerald-600">•</span> Alerta 90 dias antes do prazo de cancelamento</li>
+                <li className="flex gap-2"><span className="text-emerald-600">•</span> Alerta 30 dias antes da renovação automática</li>
+                <li className="flex gap-2"><span className="text-emerald-600">•</span> Cancelamento via plataforma, com timestamp</li>
+                <li className="flex gap-2"><span className="text-emerald-600">•</span> Outra parte confirma o recebimento dentro do ambiente</li>
+              </ul>
+              <p className="rounded-lg bg-emerald-50 px-4 py-3 font-bold text-emerald-700">
+                Resultado: R$ 102.000 evitados. Decisão tomada no momento certo.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* DORES + MUDANÇAS */}
+      <section className="bg-white">
+        <div className="container-soma section-soma">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
+            <div>
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-red-200 bg-rose-50 px-3 py-1.5">
+                <span className="size-1.5 rounded-full bg-red-600" />
+                <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-red-700">
+                  As 5 dores
+                </span>
+              </div>
+              <h2 className="h-soma mb-8">O que tira o sono da operação.</h2>
+              <ul className="space-y-3">
+                {DORES.map(d => (
+                  <li
+                    key={d}
+                    className="flex items-start gap-3 rounded-xl border border-stone-200 bg-stone-50 p-4"
+                  >
+                    <div className="mt-1.5 size-2 flex-

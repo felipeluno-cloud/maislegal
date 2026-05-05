@@ -1,0 +1,221 @@
+import {
+  ArrowRight,
+  Scale,
+  Briefcase,
+  Users,
+  FileSearch,
+  Network,
+  ExternalLink
+} from "lucide-react";
+import { Button } from "@/components/base/Button";
+import { CtaDark } from "@/components/base/CtaDark";
+
+const PERFIS = [
+  {
+    label: "Consultivo",
+    title: "Pré-conflito: minutas, análise de risco, negociação.",
+    body: "O cliente tem contratos espalhados em vários sistemas, sem repositório central, e os alertas de vencimento dependem de alguém atualizar uma planilha. Você só descobre que tem problema quando o telefone toca.",
+    argument:
+      "Você passa de reativo a proativo, e consegue avisar o cliente do problema antes que ele chegue até você."
+  },
+  {
+    label: "Contencioso",
+    title: "Pós-conflito: defesa, arbitragem, reconstrução de histórico.",
+    body: "O caso chega no escritório, e você passa as primeiras três semanas só reconstruindo o que aconteceu, antes mesmo de começar a montar a estratégia. Cada caso novo começa do zero, sem aproveitar o histórico que já existia.",
+    argument:
+      "O log auditável da +legal_ é a diferença entre um caso bem documentado e um mês perdido em e-mails."
+  }
+];
+
+const COMO_USA = [
+  {
+    icon: FileSearch,
+    title: "Acesso como advogado externo",
+    body: "Você lê o contrato, vê o histórico completo e prepara o caso no mesmo ambiente, sem precisar abrir vinte arquivos espalhados em pastas diferentes."
+  },
+  {
+    icon: Briefcase,
+    title: "Visibilidade do portfólio do cliente",
+    body: "Visão consolidada do portfólio de cada cliente que você atende, com status, prazos e obrigações em uma só tela."
+  },
+  {
+    icon: Scale,
+    title: "Exportação direta para a câmara",
+    body: "Dossiê em formato aceito diretamente pela SOMA, com o histórico do contrato exportável em um clique e sem precisar reconstruir nada."
+  }
+];
+
+export default function ParaAdvogadosPage() {
+  return (
+    <>
+      <section className="relative overflow-hidden border-b border-stone-200 bg-white">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div
+            className="absolute h-[600px] w-[600px] rounded-full opacity-[0.07]"
+            style={{ background: "var(--soma)", top: "-150px", right: "-150px" }}
+          />
+        </div>
+
+        <div className="container-soma relative py-16 md:py-24">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.3fr_1fr]">
+            <div>
+              <div
+                className="mb-6 inline-flex items-center gap-2 rounded-full border px-3 py-1.5"
+                style={{ background: "var(--soma-bg)", borderColor: "rgba(184,97,78,0.4)" }}
+              >
+                <Scale className="size-4 text-soma" strokeWidth={2} />
+                <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-soma">
+                  Para Advogados
+                </span>
+              </div>
+
+              <h1 className="mb-6 font-title text-4xl font-bold tracking-tighter text-gray-900 md:text-5xl lg:text-[52px] leading-[1.05]">
+                Quanto tempo você gasta
+                <br />
+                <span className="text-soma">reconstruindo contratos</span>
+                <br />
+                antes de cada arbitragem?
+              </h1>
+
+              <p className="mb-8 text-lg leading-relaxed text-gray-600 md:text-xl">
+                Para escritórios consultivos e contenciosos, com acesso como
+                advogado externo e preço diferenciado por relacionamentos
+                ativos. A +legal_ é a ferramenta que seus clientes deveriam
+                usar desde o início, e que muda o que chega na sua mesa
+                quando o caso surge.
+              </p>
+
+              <div className="flex flex-wrap gap-3">
+                <Button
+                  href="mailto:contato@maislegal.tech"
+                  variant="primary"
+                  size="lg"
+                  className="!bg-soma !border-soma hover:!bg-soma/90"
+                >
+                  Falar com a equipe <ArrowRight className="size-4" />
+                </Button>
+                <Button
+                  href="/early-access"
+                  variant="secondary"
+                  size="lg"
+                  className="!border-soma/40 !text-soma hover:!bg-white"
+                >
+                  Early Access individual
+                </Button>
+              </div>
+            </div>
+
+            <div className="hidden lg:block">
+              <div
+                className="rounded-2xl border-2 p-7 shadow-lg"
+                style={{ background: "white", borderColor: "var(--soma)" }}
+              >
+                <div className="mb-6 flex items-center gap-4">
+                  <div
+                    className="flex size-16 items-center justify-center rounded-2xl text-3xl font-extrabold text-white"
+                    style={{ background: "var(--soma)" }}
+                  >
+                    A
+                  </div>
+                  <div>
+                    <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-soma">
+                      Persona
+                    </p>
+                    <p className="mt-0.5 font-title text-lg font-bold text-gray-900">
+                      Advogado(a)
+                    </p>
+                  </div>
+                </div>
+                <div
+                  className="mb-5 inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-widest text-soma"
+                  style={{ background: "var(--soma-bg)" }}
+                >
+                  Escritório de médio porte
+                </div>
+                <div className="space-y-3 border-t border-stone-200 pt-5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-600">Atuação</span>
+                    <span className="font-title text-base font-bold text-soma">Consultivo · Contencioso</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-600">Sweet spot</span>
+                    <span className="font-title text-base font-bold text-soma">R$200k-R$2M</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-600">Vector</span>
+                    <span className="font-title text-base font-bold text-soma">Viral</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* DOIS PERFIS */}
+      <section className="bg-stone-50">
+        <div className="container-soma section-soma">
+          <div className="mb-12 max-w-[820px]">
+            <p className="eyebrow mb-4 text-soma">Dois perfis</p>
+            <h2 className="h-soma mb-4">
+              Consultivo ou contencioso. Conversa diferente para cada um.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {PERFIS.map(p => (
+              <div
+                key={p.label}
+                className="flex flex-col rounded-2xl border-2 bg-white p-7"
+                style={{ borderColor: "var(--soma)" }}
+              >
+                <p
+                  className="mb-4 inline-flex w-fit items-center gap-2 rounded-full px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-soma"
+                  style={{ background: "var(--soma-bg)" }}
+                >
+                  {p.label}
+                </p>
+                <h3 className="mb-4 font-title text-2xl font-bold leading-snug text-gray-900">
+                  {p.title}
+                </h3>
+                <p className="mb-5 flex-1 text-[15px] leading-relaxed text-gray-700">
+                  {p.body}
+                </p>
+                <p
+                  className="rounded-xl border-l-4 p-4 text-base italic leading-relaxed text-soma"
+                  style={{ background: "var(--soma-bg)", borderLeftColor: "var(--soma)" }}
+                >
+                  "{p.argument}"
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CENÁRIO ANTES/DEPOIS */}
+      <section className="bg-white">
+        <div className="container-soma section-soma">
+          <div className="mb-10 max-w-[820px]">
+            <p className="eyebrow mb-4 text-soma">Cenário · contencioso</p>
+            <h2 className="h-soma mb-4">
+              11 versões. 3 semanas reconstruindo. Resultado: assimetria.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="rounded-2xl border border-l-4 bg-white p-7" style={{ borderLeftColor: "#dc2626" }}>
+              <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-rose-50 px-3 py-1 font-mono text-xs uppercase tracking-widest text-red-700">
+                <span className="size-1.5 rounded-full bg-red-600" />
+                Sem +legal_
+              </p>
+              <h3 className="mb-4 font-title text-xl font-bold text-gray-900">
+                O que o advogado encontrou
+              </h3>
+              <ul className="mb-5 space-y-2 text-[15px] leading-relaxed text-gray-700">
+                <li className="flex gap-2"><span className="text-red-600">•</span> 11 arquivos de contrato em drives diferentes</li>
+                <li className="flex gap-2"><span className="text-red-600">•</span> Histórico de negociação fragmentado em e-mails</li>
+                <li className="flex gap-2"><span className="text-red-600">•</span> Três semanas em investigação preliminar</li>
+                <li className="flex gap-2"><span className="text-red-600">•</span> Combinados verbais sobre SLA sem evidência</li>
+              </ul>
+              <p classNa

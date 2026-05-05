@@ -1,0 +1,202 @@
+import {
+  ArrowRight,
+  FileText,
+  Bell,
+  Scale,
+  Upload,
+  UserPlus,
+  CheckCircle2,
+  Calendar,
+  FilePlus,
+  History,
+  AlertCircle
+} from "lucide-react";
+import { Button } from "@/components/base/Button";
+import { CtaDark } from "@/components/base/CtaDark";
+
+const PASSOS = [
+  {
+    num: "01",
+    label: "ORGANIZE",
+    title: "Organize",
+    body: "Suba um contrato existente ou crie a partir de templates. Convide a outra parte como visitante, sem custo. O contrato fica em um ambiente que todos os envolvidos usam.",
+    visual: "organize",
+    bullets: [
+      { icon: Upload, text: "Upload de contratos existentes" },
+      { icon: FileText, text: "Templates prontos por categoria" },
+      { icon: UserPlus, text: "Convite à outra parte como visitante" }
+    ],
+    color: "brand"
+  },
+  {
+    num: "02",
+    label: "MONITORE",
+    title: "Monitore",
+    body: "Alertas automáticos chegam antes de cada prazo e obrigação, e os aditivos são formalizados dentro da plataforma com aprovação documentada das partes. No painel, você acompanha o portfólio inteiro sem precisar abrir um arquivo.",
+    visual: "monitor",
+    bullets: [
+      { icon: Bell, text: "Alertas D-30, D-60 e D-90 antes do prazo" },
+      { icon: FilePlus, text: "Aditivos com aprovação registrada" },
+      { icon: History, text: "Histórico de versões com autoria" }
+    ],
+    color: "peach"
+  },
+  {
+    num: "03",
+    label: "RESOLVA",
+    title: "Resolva",
+    body: "Se uma disputa acontecer, ela abre na SOMA, a câmara de mediação e arbitragem acoplada à plataforma, com um clique. O histórico do contrato já está disponível para a câmara, e a mediação vem primeiro, com a arbitragem entrando só se necessário.",
+    visual: "resolve",
+    bullets: [
+      { icon: Scale, text: "Câmara SOMA acoplada ao ambiente" },
+      { icon: CheckCircle2, text: "Mediação primeiro, com incentivo" },
+      { icon: AlertCircle, text: "Sigilo por padrão, sem ir ao judiciário" }
+    ],
+    color: "soma"
+  }
+];
+
+const CICLO = [
+  { num: "01", label: "Elaboração", state: "active" },
+  { num: "02", label: "Assinatura", state: "active" },
+  { num: "03", label: "Pós-assinatura", state: "active" },
+  { num: "04", label: "Monitoramento", state: "active" },
+  { num: "05", label: "Aditivos", state: "active" },
+  { num: "06", label: "Resolução", state: "soma" }
+];
+
+const COLOR: Record<string, { border: string; bg: string; iconBg: string; iconText: string; numBg: string; pillBg: string; pillText: string }> = {
+  brand: {
+    border: "var(--brand)",
+    bg: "var(--brand-tint)",
+    iconBg: "white",
+    iconText: "var(--brand)",
+    numBg: "var(--brand)",
+    pillBg: "white",
+    pillText: "var(--brand)"
+  },
+  peach: {
+    border: "var(--peach-dark)",
+    bg: "var(--peach-bg)",
+    iconBg: "white",
+    iconText: "var(--peach-dark)",
+    numBg: "var(--peach-dark)",
+    pillBg: "white",
+    pillText: "var(--peach-dark)"
+  },
+  soma: {
+    border: "var(--soma)",
+    bg: "var(--soma-bg)",
+    iconBg: "white",
+    iconText: "var(--soma)",
+    numBg: "var(--soma)",
+    pillBg: "white",
+    pillText: "var(--soma)"
+  }
+};
+
+export default function ComoFuncionaPage() {
+  return (
+    <>
+      {/* HERO */}
+      <section className="relative overflow-hidden border-b border-stone-200 bg-white">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div
+            className="absolute h-[600px] w-[600px] rounded-full opacity-[0.04]"
+            style={{ background: "var(--brand)", top: "-150px", right: "-150px" }}
+          />
+        </div>
+
+        <div className="container-soma relative py-16 md:py-24">
+          <div className="max-w-[820px]">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand-tint px-3 py-1.5">
+              <span className="size-1.5 animate-pulse rounded-full bg-brand" />
+              <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-brand">
+                Como funciona
+              </span>
+            </div>
+
+            <h1 className="mb-6 font-title text-4xl font-bold tracking-tighter text-gray-900 md:text-5xl lg:text-6xl">
+              Do rascunho à resolução.
+              <br />
+              <span className="text-brand">No mesmo ambiente.</span>
+            </h1>
+
+            <p className="text-lg leading-relaxed text-gray-600 md:text-xl">
+              Três passos cobrem o ciclo inteiro do contrato. A +legal_ não
+              substitui sua ferramenta de assinatura nem o seu jurídico, mas
+              cobre o espaço que existe antes da assinatura e tudo que vem
+              depois dela.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CICLO DE VIDA · diagrama horizontal */}
+      <section className="bg-stone-50">
+        <div className="container-soma section-soma">
+          <div className="mb-12 max-w-[820px]">
+            <p className="eyebrow mb-4">Ciclo de vida do contrato</p>
+            <h2 className="h-soma mb-4">As seis etapas que cobrimos.</h2>
+            <p className="text-lg leading-relaxed text-gray-600">
+              Cada etapa pertence ao mesmo ambiente, sem precisar trocar de
+              sistema entre uma fase do contrato e outra.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <div className="flex min-w-[800px] items-center gap-2">
+              {CICLO.map((s, i) => (
+                <div key={s.num} className="flex flex-1 items-center">
+                  <div
+                    className={`flex flex-1 flex-col items-center rounded-xl px-3 py-5 ${
+                      s.state === "soma"
+                        ? "border-2 border-soma bg-soma-bg"
+                        : "bg-brand text-white"
+                    }`}
+                  >
+                    <span
+                      className={`mb-2 font-mono text-[10px] font-bold tracking-widest ${
+                        s.state === "soma" ? "text-soma" : "text-white/60"
+                      }`}
+                    >
+                      {s.num}
+                    </span>
+                    <span
+                      className={`text-center font-title text-sm font-bold leading-tight ${
+                        s.state === "soma" ? "text-soma" : "text-white"
+                      }`}
+                    >
+                      {s.label}
+                    </span>
+                  </div>
+                  {i < CICLO.length - 1 && (
+                    <ArrowRight
+                      className="mx-1 size-4 flex-shrink-0 text-stone-400"
+                      strokeWidth={1.5}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <p className="mt-6 text-center font-mono text-[11px] uppercase tracking-widest text-stone-500">
+            Da elaboração à resolução, no mesmo ambiente
+          </p>
+        </div>
+      </section>
+
+      {/* OS 3 PASSOS · alternância de layouts */}
+      {PASSOS.map((p, i) => {
+        const c = COLOR[p.color];
+        const Visual = p.visual === "organize" ? OrganizeVisual : p.visual === "monitor" ? MonitorVisual : ResolveVisual;
+        const reverse = i % 2 === 1;
+        return (
+          <section
+            key={p.num}
+            className={`relative overflow-hidden ${i % 2 === 0 ? "bg-white" : "bg-stone-50"}`}
+          >
+            <div className="container-soma section-soma">
+              <div
+                className={`grid grid-cols-1 items-

@@ -1,0 +1,197 @@
+import {
+  ArrowRight,
+  Upload,
+  MessageSquare,
+  Bell,
+  FilePlus,
+  Scale,
+  Cog,
+  Plug,
+  ExternalLink
+} from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/base/Button";
+import { CtaDark } from "@/components/base/CtaDark";
+
+// 6 etapas do contrato, alinhadas com o Pilar 02 da home
+const CICLO = [
+  {
+    num: "01",
+    label: "Rascunho",
+    body: "A minuta nasce dentro do ambiente, com templates pré-aprovados ou com upload de um contrato existente."
+  },
+  {
+    num: "02",
+    label: "Negociação",
+    body: "As partes editam o documento em conjunto, comentam cláusulas, registram contrapropostas, e cada movimento fica com data e autoria."
+  },
+  {
+    num: "03",
+    label: "Assinatura",
+    body: "Integração nativa com as principais plataformas do mercado, sem trocar de ferramenta no momento da assinatura."
+  },
+  {
+    num: "04",
+    label: "Cumprimento",
+    body: "Cada cláusula vira obrigação rastreável, com alertas automáticos antes de cada prazo, vencimento ou janela de renovação."
+  },
+  {
+    num: "05",
+    label: "Aditivos",
+    body: "Mudanças e concessões são formalizadas dentro do mesmo ambiente, com aprovação documentada das partes envolvidas."
+  },
+  {
+    num: "06",
+    label: "Resolução",
+    body: "Se uma disputa acontecer, a câmara SOMA está acoplada e o histórico do contrato vai junto, sem reconstrução."
+  }
+];
+
+// Storyboard de 5 momentos de uso real
+const STORYBOARD = [
+  {
+    num: "01",
+    when: "No primeiro dia",
+    icon: Upload,
+    title: "O contrato sobe na plataforma.",
+    body: "Você sobe um contrato existente ou cria a partir de templates pré-aprovados, e convida a outra parte como visitante, sem custo. A partir desse momento, o documento deixa de viver em e-mails e drives separados, e passa a existir em um ambiente só.",
+    color: "brand"
+  },
+  {
+    num: "02",
+    when: "Durante a negociação",
+    icon: MessageSquare,
+    title: "Cada concessão fica documentada.",
+    body: "As cláusulas são comentadas no próprio contrato, com versões registrando quem alterou o quê, e cada contraproposta tem data e autoria. O combinado fica por escrito desde o começo, e não sobra espaço para 'eu lembro diferente'.",
+    color: "brand"
+  },
+  {
+    num: "03",
+    when: "No dia a dia",
+    icon: Bell,
+    title: "Os alertas chegam antes do problema.",
+    body: "A plataforma transforma cada cláusula em obrigação rastreável, e os alertas automáticos chegam 30, 60 ou 90 dias antes de qualquer vencimento, renovação ou marco contratual. Nenhum prazo passa batido, mesmo se quem cuidava do contrato sair da empresa.",
+    color: "peach"
+  },
+  {
+    num: "04",
+    when: "Quando algo muda",
+    icon: FilePlus,
+    title: "O ajuste vira aditivo, não conversa solta.",
+    body: "Uma concessão combinada por WhatsApp ou em reunião pode ser formalizada como aditivo em poucos minutos, com aprovação documentada das duas partes. O contrato continua refletindo o que foi acordado de verdade, sem deixar pontas soltas para o futuro.",
+    color: "peach"
+  },
+  {
+    num: "05",
+    when: "Se virar disputa",
+    icon: Scale,
+    title: "A câmara SOMA está do lado, pronta.",
+    body: "Quando uma divergência não se resolve no diálogo, qualquer parte abre o procedimento na câmara SOMA com um clique, e o histórico inteiro do contrato é transferido automaticamente. A mediação vem primeiro, com incentivo financeiro, e a arbitragem entra só se a mediação não resolver.",
+    color: "soma"
+  }
+];
+
+// Entradas para Funcionalidades e Integrações
+const SUBPAGINAS = [
+  {
+    icon: Cog,
+    label: "Funcionalidades",
+    href: "/funcionalidades",
+    title: "Os seis blocos do produto.",
+    body: "Ambiente compartilhado, monitoramento e alertas, aditivos formalizados, histórico que sobrevive, tecnologia que extrai obrigações, e a câmara SOMA integrada. Cada bloco com mais detalhe sobre o que faz e o que entrega.",
+    cta: "Ver as funcionalidades"
+  },
+  {
+    icon: Plug,
+    label: "Integrações",
+    href: "/integracoes",
+    title: "Conecta com o que você já usa.",
+    body: "Plataformas de assinatura digital, Slack, Google Calendar, CRMs e ferramentas de calendário. A +legal_ se encaixa entre o que você já tem, sem pedir para trocar nada.",
+    cta: "Ver as integrações"
+  }
+];
+
+const COLOR_STORYBOARD: Record<
+  string,
+  { border: string; bg: string; iconBg: string; iconText: string; numText: string }
+> = {
+  brand: {
+    border: "var(--brand)",
+    bg: "var(--brand-tint)",
+    iconBg: "var(--brand)",
+    iconText: "white",
+    numText: "var(--brand)"
+  },
+  peach: {
+    border: "var(--peach-dark)",
+    bg: "var(--peach-bg)",
+    iconBg: "var(--peach-dark)",
+    iconText: "white",
+    numText: "var(--peach-dark)"
+  },
+  soma: {
+    border: "var(--soma)",
+    bg: "var(--soma-bg)",
+    iconBg: "var(--soma)",
+    iconText: "white",
+    numText: "var(--soma)"
+  }
+};
+
+export default function ComoFuncionaPage() {
+  return (
+    <>
+      {/* HERO */}
+      <section className="relative overflow-hidden border-b border-stone-200 bg-white">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div
+            className="absolute h-[600px] w-[600px] rounded-full opacity-[0.04]"
+            style={{ background: "var(--brand)", top: "-150px", right: "-150px" }}
+          />
+        </div>
+
+        <div className="container-soma relative py-16 md:py-24">
+          <div className="max-w-[860px]">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand-tint px-3 py-1.5">
+              <span className="size-1.5 rounded-full bg-brand" />
+              <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-brand">
+                Como funciona
+              </span>
+            </div>
+
+            <h1 className="mb-6 font-title text-4xl font-bold tracking-tighter text-gray-900 md:text-5xl lg:text-6xl">
+              Do rascunho à resolução.
+              <br />
+              <span className="text-brand">No mesmo ambiente.</span>
+            </h1>
+
+            <p className="text-lg leading-relaxed text-gray-600 md:text-xl">
+              A +legal_ acompanha o contrato em todas as fases da sua vida,
+              desde a primeira minuta até a resolução de uma eventual disputa.
+              Cada etapa pertence ao mesmo ambiente, e a sua stack atual
+              (assinatura, drive, calendário) continua exatamente onde está.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CICLO DE VIDA · linha contínua + cards ilustrados */}
+      <section className="bg-stone-50">
+        <div className="container-soma section-soma">
+          <div className="mb-12 max-w-[820px]">
+            <p className="eyebrow mb-4">Ciclo de vida do contrato</p>
+            <h2 className="h-soma mb-4">As seis etapas que cobrimos.</h2>
+            <p className="text-lg leading-relaxed text-gray-600">
+              Outras ferramentas cobrem uma ou duas dessas fases. A +legal_
+              cobre as seis, em sequência, no mesmo ambiente, sem trocar de
+              sistema entre uma e outra.
+            </p>
+          </div>
+
+          {/* Cards com mini-ilustração própria de cada fase */}
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {CICLO.map(s => {
+              const phase = phaseColor(s.num);
+              const Visual = ETAPA_VISUAL[s.num];
+              return (
+             
