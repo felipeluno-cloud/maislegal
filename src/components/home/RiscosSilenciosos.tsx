@@ -73,7 +73,8 @@ export function RiscosSilenciosos() {
           </div>
 
           <h2 className="h-soma mb-5">
-            Contratos ruins expõem relacionamentos, dados e reputação.
+            Contratos ruins expõem relacionamentos, dados e reputação.{" "}
+            <span style={{ color: "var(--brand)" }}>Não corra esse risco.</span>
           </h2>
 
           <p className="mb-3 text-lg leading-relaxed text-gray-700">
